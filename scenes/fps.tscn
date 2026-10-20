@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://csigw1jywalfh"]
+
+[ext_resource type="Script" uid="uid://cckcl12wxg1f1" path="res://scripts/fps.gd" id="1_jtrh3"]
+
+[node name="FPS" type="Label" unique_id=1537437366]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_jtrh3")

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dmaqawf3mef72"]
+
+[ext_resource type="Script" uid="uid://c61lgsmtw64sl" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://c2vyt2s0xnugx" path="res://assets/background/randomСolor/single_textures/texture24.png" id="2_ekxnf"]
+
+[node name="MainMenu" type="Node2D" unique_id=489782249]
+script = ExtResource("1_l6cm7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2022398115]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1701804400]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=598423084]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 129.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1174563115]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "play"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1059234288]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "skins"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1715562439]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "settings
+"
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1921049996]
+repeat_size = Vector2(32, 32)
+repeat_times = 11
+
+[node name="BG" type="Sprite2D" parent="Parallax2D" unique_id=49629766]
+position = Vector2(90, 160)
+texture = ExtResource("2_ekxnf")
+
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Button" to="." method="_on_button_pressed"]

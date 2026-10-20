@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://sp3btn6qesv7"]
+
+[ext_resource type="Script" uid="uid://cvm76ptg50wu6" path="res://scripts/touch.gd" id="1_bhslw"]
+[ext_resource type="Texture2D" uid="uid://bjsh7mn4watro" path="res://assets/finger/finger.png" id="2_bhes5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8omw"]
+
+[node name="touch" type="CharacterBody2D" unique_id=787436474]
+visible = false
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_bhslw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=697042915]
+shape = SubResource("CircleShape2D_b8omw")
+
+[node name="TouchSprite" type="Sprite2D" parent="." unique_id=840779599]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bhes5")

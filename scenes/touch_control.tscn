@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dovxlmbhscikq"]
+
+[ext_resource type="Script" uid="uid://b1engjr2xdmm8" path="res://scripts/touch_control.gd" id="1_qw5pv"]
+
+[node name="TouchControl" type="Control" unique_id=1911689398 node_paths=PackedStringArray("button")]
+layout_mode = 3
+anchor_right = 0.0625
+anchor_bottom = 0.11111111
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qw5pv")
+button = NodePath("Button")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1327411148]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+anchor_right = 1.25
+anchor_bottom = 1.25
+offset_right = -42.0
+offset_bottom = -42.0
+text = "DD"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

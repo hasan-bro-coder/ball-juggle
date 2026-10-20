@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cokcoeeil0tuf"]
+
+[ext_resource type="Script" uid="uid://c53eba6jqf7co" path="res://scripts/sling_shot.gd" id="1_kt54x"]
+[ext_resource type="Texture2D" uid="uid://bjsh7mn4watro" path="res://assets/finger/finger.png" id="2_13cix"]
+[ext_resource type="AudioStream" uid="uid://ucdiny3f5q75" path="res://assets/sfx/perfect_kick.ogg" id="3_i4bup"]
+[ext_resource type="Script" uid="uid://bk8hlra0q16mj" path="res://scripts/path_preview.gd" id="4_3ocgh"]
+
+[node name="SlingShot" type="Node2D" unique_id=180123902]
+script = ExtResource("1_kt54x")
+power_scale = 10.0
+pull_falloff = 1.3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2047293778]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_13cix")
+
+[node name="hit" type="AudioStreamPlayer" parent="." unique_id=278988882]
+process_mode = 3
+stream = ExtResource("3_i4bup")
+volume_db = -5.0
+
+[node name="PathPreview" type="Node2D" parent="." unique_id=269641833]
+script = ExtResource("4_3ocgh")
+dot_count = 15
+time_step = 0.06
+dot_radius = 2.5

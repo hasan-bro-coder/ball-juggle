@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cer2eqv0qkupa"]
+
+[ext_resource type="Script" uid="uid://c41gs51408rn1" path="res://scripts/rabbit.gd" id="1_dxh4p"]
+[ext_resource type="Texture2D" uid="uid://bfbj1be7du4w8" path="res://assets/ball/rabbitt.png" id="2_dxh4p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wcx4a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8omw"]
+
+[node name="Rabbit" type="CharacterBody2D" unique_id=1379653699]
+top_level = true
+light_mask = 5
+visibility_layer = 5
+script = ExtResource("1_dxh4p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1757529707]
+position = Vector2(2, 0)
+texture = ExtResource("2_dxh4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462464699]
+shape = SubResource("CircleShape2D_wcx4a")
+disabled = true
+
+[node name="HitArea" type="Area2D" parent="." unique_id=144732004]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=307767724]
+shape = SubResource("CircleShape2D_b8omw")

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://2hsbdc3we646"]
+
+[ext_resource type="FontFile" uid="uid://qr6ryuktqkr2" path="res://assets/font/Peaberry-Bold.otf" id="1_5x22p"]
+[ext_resource type="Script" uid="uid://fv2opw7rtj65" path="res://scripts/floating_label.gd" id="1_s6p88"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1l24p"]
+font = ExtResource("1_5x22p")
+
+[node name="FloatingLabel" type="Node2D" unique_id=1722924637]
+z_index = 11
+script = ExtResource("1_s6p88")
+
+[node name="Label" type="Label" parent="." unique_id=1695081747]
+z_index = 11
+anchors_preset = -1
+anchor_right = 0.18333334
+anchor_bottom = 0.053125
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOO"
+label_settings = SubResource("LabelSettings_1l24p")
+metadata/_edit_use_anchors_ = true

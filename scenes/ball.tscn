@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bkv2vdpmtqa5w"]
+
+[ext_resource type="Script" uid="uid://3llepfebfrf3" path="res://scripts/ball.gd" id="1_41u45"]
+[ext_resource type="Texture2D" uid="uid://cbkqkpe1ef1hw" path="res://assets/ball/ball_blue.png" id="3_4dx81"]
+[ext_resource type="PackedScene" uid="uid://cag8vxfvxeuw1" path="res://scenes/trail.tscn" id="3_f7cbr"]
+[ext_resource type="Texture2D" uid="uid://iotrpad20330" path="res://assets/vfx/star.png" id="3_fwo8l"]
+[ext_resource type="PackedScene" uid="uid://3cmck5slyuax" path="res://scenes/ball_indicator.tscn" id="5_eew57"]
+[ext_resource type="AudioStream" uid="uid://2wg1o2d4xb5c" path="res://assets/sfx/early_kick_bubble.wav" id="5_jj7gd"]
+[ext_resource type="AudioStream" uid="uid://xsoy1qvr7he6" path="res://assets/sfx/kick.wav" id="6_fwo8l"]
+
+[sub_resource type="Curve" id="Curve_f7cbr"]
+_data = [Vector2(0, 0.27692306), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_f7cbr"]
+offsets = PackedFloat32Array(0, 0.6837607, 1)
+colors = PackedColorArray(0.92156863, 0.8980392, 0.80784315, 0, 0.92156863, 0.8980392, 0.80784315, 0.7254902, 0.92156863, 0.8980392, 0.80784315, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wcx4a"]
+radius = 16.124516
+
+[node name="Ball" type="CharacterBody2D" unique_id=125785967 groups=["ball"]]
+z_index = 8
+collision_layer = 4
+script = ExtResource("1_41u45")
+upward_impulse_scale = 1000.0
+bounce = 1.0
+
+[node name="trail" parent="." unique_id=1157266499 node_paths=PackedStringArray("target") instance=ExtResource("3_f7cbr")]
+top_level = true
+z_index = 7
+width = 30.0
+width_curve = SubResource("Curve_f7cbr")
+default_color = Color(0.92156863, 0.8980392, 0.80784315, 1)
+gradient = SubResource("Gradient_f7cbr")
+target = NodePath("..")
+max_points = 15
+point_distance = 0.5
+trail_lifetime = 0.05
+
+[node name="Star" type="Sprite2D" parent="." unique_id=107145865]
+visible = false
+position = Vector2(22, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_fwo8l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=105562906]
+z_index = 8
+texture = ExtResource("3_4dx81")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=341352306]
+shape = SubResource("CircleShape2D_wcx4a")
+
+[node name="GroundRay" type="RayCast2D" parent="." unique_id=908607678]
+target_position = Vector2(0, 21)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1338930815]
+
+[node name="BallIndicator" parent="CanvasLayer" unique_id=873785590 node_paths=PackedStringArray("ball") instance=ExtResource("5_eew57")]
+offset_top = 12.0
+offset_bottom = 12.0
+ball = NodePath("../..")
+margin = 20.0
+
+[node name="bounce" type="AudioStreamPlayer" parent="." unique_id=1033768974]
+stream = ExtResource("5_jj7gd")
+volume_db = -1.0
+
+[node name="floor_hit" type="AudioStreamPlayer" parent="." unique_id=987210396]
+stream = ExtResource("6_fwo8l")
+volume_db = -80.0
