@@ -53,6 +53,11 @@ shape = SubResource("CircleShape2D_wcx4a")
 
 [node name="GroundRay" type="RayCast2D" parent="." unique_id=908607678]
 target_position = Vector2(0, 21)
+collision_mask = 128
+
+[node name="HitTimer" type="Timer" parent="." unique_id=1261743756]
+wait_time = 0.5
+one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1338930815]
 
@@ -69,3 +74,5 @@ volume_db = -1.0
 [node name="floor_hit" type="AudioStreamPlayer" parent="." unique_id=987210396]
 stream = ExtResource("6_fwo8l")
 volume_db = -80.0
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

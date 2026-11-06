@@ -24,8 +24,9 @@ Global="*uid://ctt5x3ck2jeeu"
 
 window/size/viewport_width=180
 window/size/viewport_height=320
+window/size/mode=2
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
 [input_devices]
@@ -44,3 +45,4 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_2d=3

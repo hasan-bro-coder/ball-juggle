@@ -10,14 +10,27 @@ class_name Slingshot
 var anchor := Vector2.ZERO
 var aiming := false
 var rabbit : Rabbit
+var rabbits: Array[Rabbit] = []
+@export var buy_rabbit_button: Button
+var rabbits_left = 100:
+	set(val):
+		buy_rabbit_button.text = "BUY RABBIT (%s)" % val
+		rabbits_left = val
 @onready var hit_audio: AudioStreamPlayer = $hit
 @onready var path_preview: PathPreview = $PathPreview
 
 func _ready() -> void:
+	buy_rabbit_button.pressed.connect(buy_rabbit)
 	StateHandler.hit.connect(ball_hit)
+	
+func buy_rabbit():
+	rabbits_left+=1
+	#buy_rabbit_button.text = "BUY RABBIT (%s)" % rabbits_left
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and (event.keycode == KEY_X or event.keycode == KEY_SPACE):
-		if event.pressed and not event.echo:
+		print(event.position.y)
+		if event.pressed and not event.echo and event.position.y < 278:
 			start_aim(get_global_mouse_position())
 		elif not event.pressed:
 			release_shot()
@@ -26,7 +39,7 @@ func _input(event: InputEvent) -> void:
 		update_aim(get_global_mouse_position())
 
 	elif event is InputEventScreenTouch:
-		if event.pressed:
+		if event.pressed and event.position.y < 278 and rabbits_left > 0:
 			start_aim(event.position)
 		else:
 			release_shot()
@@ -39,12 +52,24 @@ func start_aim(pos: Vector2) -> void:
 	if aiming:
 		return
 
+	var count = 0
+	for i in rabbits:
+		if count >= 3:
+			break
+		if i == null:
+			continue
+		if i.notifier.is_on_screen():
+			count+=1
+	if count >= 3:
+		return
+		
 	anchor = pos
 	aiming = true
 	path_preview.hide_path()
 	rabbit = rabbit_scene.instantiate()
 	add_child(rabbit)
-
+	rabbits.append(rabbit)
+	#rabbits.back().tree_exited.connect(func(): rabbits.erase(rabbits[idx]))
 	rabbit.global_position = anchor
 	finger.global_position = anchor
 	#finger.show()
@@ -82,6 +107,7 @@ func release_shot() -> void:
 
 	rabbit.launch(launch_velocity)
 	rabbit = null
+	rabbits_left-=1
 	finger.hide()
 #
 #func release_shot() -> void:

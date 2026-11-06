@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c41gs51408rn1" path="res://scripts/rabbit.gd" id="1_dxh4p"]
 [ext_resource type="Texture2D" uid="uid://bfbj1be7du4w8" path="res://assets/ball/rabbitt.png" id="2_dxh4p"]
+[ext_resource type="PackedScene" uid="uid://dqc660f7s21qn" path="res://scenes/rabbit_indicator.tscn" id="3_haj5u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wcx4a"]
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8omw"]
 
@@ -11,7 +13,14 @@
 top_level = true
 light_mask = 5
 visibility_layer = 5
+collision_layer = 0
+collision_mask = 128
 script = ExtResource("1_dxh4p")
+max_speed = null
+gravity = null
+perfect_hit_angle = null
+perfect_hit_multiplier = null
+collision_mode = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1757529707]
 position = Vector2(2, 0)
@@ -19,7 +28,6 @@ texture = ExtResource("2_dxh4p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1462464699]
 shape = SubResource("CircleShape2D_wcx4a")
-disabled = true
 
 [node name="HitArea" type="Area2D" parent="." unique_id=144732004]
 collision_layer = 5
@@ -27,3 +35,12 @@ collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=307767724]
 shape = SubResource("CircleShape2D_b8omw")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=681258083]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=757093287]
+
+[node name="RabbitIndicator" parent="CanvasLayer" unique_id=873785590 node_paths=PackedStringArray("ball") instance=ExtResource("3_haj5u")]
+ball = NodePath("../..")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dqc660f7s21qn"]
+
+[ext_resource type="Script" uid="uid://d3y7oer7jmnp2" path="res://scripts/rabbit_indicator.gd" id="1_abcvs"]
+[ext_resource type="Texture2D" uid="uid://d3d1b6b32ok7g" path="res://assets/input/rabbit-indicator.png" id="2_abcvs"]
+
+[node name="RabbitIndicator" type="Control" unique_id=873785590]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_abcvs")
+margin = 10.0
+
+[node name="PinTexture" type="TextureRect" parent="." unique_id=1301420432]
+layout_mode = 1
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1415927
+pivot_offset = Vector2(4, 4)
+texture = ExtResource("2_abcvs")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
